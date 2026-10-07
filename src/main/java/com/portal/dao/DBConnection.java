@@ -2,11 +2,15 @@ package com.portal.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DBConnection {
-    public static Connection getConnection() throws Exception {
+    private static final String URL = "jdbc:mysql://localhost:3306/student_portal?useSSL=false&serverTimezone=UTC";
+    private static final String USER = "root";
+    private static final String PASSWORD = "your_mysql_password"; // Change to your DB password
+
+    public static Connection getConnection() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        // Ensure database name is 'university_db'
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/university_db?useSSL=false&allowPublicKeyRetrieval=true", "root", "@imnoturnana123$");
+        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }
